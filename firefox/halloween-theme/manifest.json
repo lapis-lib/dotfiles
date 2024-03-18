@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "version": "1.1",
+  "name": "Halloween",
+  "theme": {
+    "images": {},
+    "properties": {},
+    "colors": {
+      "toolbar": "rgb(63, 25, 60)",
+      "toolbar_text": "rgb(255, 79, 0)",
+      "frame": "rgb(20, 8, 20)",
+      "tab_background_text": "rgb(32, 162, 6)",
+      "toolbar_field": "rgb(0, 0, 0)",
+      "toolbar_field_text": "rgb(255, 79, 0)",
+      "tab_line": "rgb(226, 204, 231)",
+      "popup": "rgb(63, 25, 60)",
+      "popup_text": "rgb(255, 120, 0)",
+      "tab_loading": "rgb(226, 204, 231)"
+    }
+  }
+}
