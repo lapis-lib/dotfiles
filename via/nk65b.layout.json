@@ -2,12 +2,12 @@
   "name": "NK65B",
   "vendorProductId": 2305314383,
   "macros": [
-    "",
-    "{+KC_LCTL}{+KC_LSFT}d{-KC_LCTL}{-KC_LSFT}",
+    "{KC_LALT}",
+    "{KC_LCTL,KC_F12}",
     "{+KC_LCTL}{+KC_LALT}{+KC_LSFT}d{-KC_LALT}{-KC_LCTL}{-KC_LSFT}",
     "{+KC_LCTL}{+KC_LALT}{+KC_LSFT}w{-KC_LALT}{-KC_LCTL}{-KC_LSFT}",
     "{+KC_LCTL}{+KC_LALT}{+KC_LSFT}m{-KC_LALT}{-KC_LCTL}{-KC_LSFT}",
-    "{+KC_LCTL}{+KC_LSFT}w{-KC_LCTL}{-KC_LSFT}",
+    "{KC_LCTL,KC_LSFT,KC_F12}",
     "{+KC_LCTL}{+KC_LALT}d{-KC_LALT}{KC_LALT}{-KC_LCTL}",
     "{+KC_LCTL}{+KC_LALT}w{-KC_LALT}{-KC_LCTL}",
     "{+KC_LCTL}{+KC_LALT}m{-KC_LALT}{-KC_LCTL}",
@@ -15,9 +15,9 @@
     "{+KC_LCTL}{+KC_LALT}{KC_RGHT}{-KC_LCTL}{-KC_LALT}",
     "{+KC_LCTL}{+KC_LALT}{KC_DOWN}{-KC_LCTL}{-KC_LALT}",
     "{KC_LCTL,KC_LALT,KC_UP}",
-    "{KC_LCTL,KC_PGUP}",
-    "{KC_LCTL,KC_PGDN}",
-    "{KC_LCTL,KC_W}"
+    "{KC_RCTL,KC_PGUP}",
+    "{KC_RCTL,KC_PGDN}",
+    "{KC_RCTL,KC_W}"
   ],
   "layers": [
     [
@@ -90,9 +90,9 @@
       "KC_SPC",
       "KC_NO",
       "KC_NO",
-      "KC_CAPS",
-      "FN_MO13",
       "KC_RALT",
+      "FN_MO13",
+      "MACRO(0)",
       "KC_LEFT",
       "KC_DOWN",
       "KC_RGHT"
