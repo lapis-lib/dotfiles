@@ -1,0 +1,214 @@
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+[palette]
+  black = '#292522'
+  blue = '#5389C5'
+  bright_green = '#20a206'
+  dark_purple = '#140814'
+  green = '#42824A'
+  orange = '#C75A22'
+  purple = '#3F193C'
+  red = '#B33323'
+  white = '#ECE1D7'
+  yellow = '#D08949'
+
+[secondary_prompt]
+  template = '❱❱ '
+  foreground = 'p:bright_green'
+  background = 'transparent'
+
+[transient_prompt]
+  template = '❱ '
+  background = 'transparent'
+  foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:bright_green{{end}}']
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    trailing_diamond = ''
+    template = ' {{ if .SSHSession }} {{ end }}{{ .UserName }} '
+    foreground = 'p:black'
+    background = 'p:orange'
+    type = 'session'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    trailing_diamond = ''
+    template = '  {{ path .Path .Location }} '
+    foreground = 'p:orange'
+    background = 'p:purple'
+    type = 'path'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      style = 'full'
+
+  [[blocks.segments]]
+    trailing_diamond = ''
+    template = ' {{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}<p:orange>{{ if gt .Behind 0}} ⇡ {{ end }}{{ if gt .Ahead 0}} ⇣ {{ end }} </>'
+    foreground = 'p:bright_green'
+    powerline_symbol = ''
+    background = 'p:dark_purple'
+    type = 'git'
+    style = 'diamond'
+    foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:bright_green{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:white{{ end }}', '{{ if gt .Ahead 0 }}p:white{{ end }}']
+
+    [blocks.segments.properties]
+      branch_icon = ''
+      cache_duration = 'none'
+      commit_icon = '@'
+      fetch_status = true
+      fetch_upstream_icon = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '❱'
+    background = 'transparent'
+    type = 'text'
+    style = 'plain'
+    foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:bright_green{{end}}']
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:blue'
+    background = 'transparent'
+    type = 'lua'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '  '
+    foreground = 'p:blue'
+    background = 'transparent'
+    type = 'cmake'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:green'
+    background = 'transparent'
+    type = 'node'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      display_mode = 'files'
+      fetch_package_manager = false
+      home_enabled = false
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:blue'
+    background = 'transparent'
+    type = 'go'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      fetch_version = false
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:yellow'
+    background = 'transparent'
+    type = 'python'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      display_mode = 'files'
+      fetch_version = false
+      fetch_virtual_env = false
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:red'
+    background = 'transparent'
+    type = 'ruby'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = 'in <p:blue><b>{{ .Name }}</b></> '
+    foreground = 'p:white'
+    background = 'transparent'
+    type = 'shell'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = 'at <p:blue><b>{{ .CurrentDate | date .Format }}</b></>'
+    foreground = 'p:white'
+    background = 'transparent'
+    type = 'time'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      time_format = '3.04pm'
+
+  [[blocks.segments]]
+    template = ' {{ .FormattedMs }}'
+    foreground = 'p:yellow'
+    background = 'transparent'
+    type = 'executiontime'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      threshold = 5000
+
+[[tooltips]]
+  leading_diamond = ''
+  trailing_diamond = ''
+  template = '  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} '
+  foreground = 'p:white'
+  background = 'p:orange'
+  type = 'aws'
+  style = 'diamond'
+  tips = ['aws']
+
+  [tooltips.properties]
+    display_default = true
+
+[[tooltips]]
+  leading_diamond = ''
+  trailing_diamond = ''
+  template = '  {{ .Name }} '
+  foreground = 'p:white'
+  background = 'p:blue'
+  type = 'az'
+  style = 'diamond'
+  tips = ['az']
+
+  [tooltips.properties]
+    display_default = true
