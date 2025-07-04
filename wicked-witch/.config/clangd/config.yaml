@@ -1,2 +1,0 @@
-CompileFlags:
-  Add: [-sysroot='N:/msys64/clang64'],
