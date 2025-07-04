@@ -1,0 +1,40 @@
+*{
+	font-family: Maple Mono Normal;
+	font-size: 14px;
+	border-radius: 9px;
+	padding: 0px;
+	background: transparent; /* each background element can be 
+							specified separately */
+}
+
+window#waybar {
+	background-image: linear-gradient(to bottom, #141216 100%);
+
+	border-radius: 14px;
+	padding: 0px;
+	border-style: none;
+}
+
+#battery,
+#network,
+#clock,
+#custom-applauncher,
+#tray,
+#workspaces,
+#pulseaudio { /* general scope */
+	background-image: linear-gradient(to bottom, #27232b 100%);
+
+	margin: 6px;
+	margin-right: 0px;
+	border-radius: 8px;
+	padding: 4px 8px;
+
+	color: #d8cab8;
+	border-style: none;
+
+	transition-duration: 120ms;
+}
+
+#clock {
+	margin-right: 6px;
+}
