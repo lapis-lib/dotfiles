@@ -43,7 +43,7 @@ body {
 
     /* dms button options */
     --custom-dms-icon: hide; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
-    --dms-icon-svg-url: url('https://raw.githubusercontent.com/lapis-lib/dotfiles/df61b52112c8c64217fe47b5e6f2ef3766e71afa/cibo/cibo.svg'); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-url: url(''); /* icon svg url. MUST BE A SVG. */
     --dms-icon-svg-size: 100%; /* size of the svg (css mask-size property) */
     --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
     --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
@@ -105,12 +105,12 @@ body {
     --message-hover: hsla(225, 0%, 0%, 0.1); /* messages when hovered */
 
     /* accent colors */
-    --accent-1: var(--blue-1); /* links and other accent text */
-    --accent-2: var(--green-6); /* small accent elements */
-    --accent-3: var(--blue-3); /* accent buttons */
-    --accent-4: var(--blue-4); /* accent buttons when hovered */
-    --accent-5: var(--blue-5); /* accent buttons when clicked */
-    --accent-new: var(--red-5); /* stuff that's normally red like mute/deafen buttons */
+    --accent-1: var(--yellow-1); /* links and other accent text */
+    --accent-2: var(--yellow-4); /* small accent elements */
+    --accent-3: var(--yellow-3); /* accent buttons */
+    --accent-4: var(--yellow-4); /* accent buttons when hovered */
+    --accent-5: var(--yellow-5); /* accent buttons when clicked */
+    --accent-new: var(--red-6); /* stuff that's normally red like mute/deafen buttons */
     --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
     --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
     --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
@@ -119,7 +119,7 @@ body {
     /* status indicator colors */
     --online: var(--green-6); /* change to #43a25a for default */
     --dnd: var(--red-6); /* change to #d83a42 for default */
-    --idle: var(--yellow-6); /* change to #ca9654 for default */
+    --idle: var(--yellow-5); /* change to #ca9654 for default */
     --streaming: var(--purple-6); /* change to #593695 for default */
     --offline: var(--text-4); /* change to #83838b for default offline color */
 
@@ -132,20 +132,17 @@ body {
     /* base colors */
     --red-1: hsl(349, 99%, 78%);
     --red-2: hsl(349, 59%, 54%);
-    /* --red-2: hsl(349, 89%, 72%); */
     --red-3: hsl(349, 79%, 66%);
     --red-4: hsl(349, 69%, 60%);
     --red-5: hsl(349, 59%, 54%);
-    --red-6: hsl(344, 98%, 37%);
+    --red-6: #b33323;
 
-    --green-1: #039ca4;
-    --green-2: #039ca4;
-    /* --green-1: hsl(89, 56%, 67%); */
-    /* --green-2: hsl(89, 51%, 61%); */
+    --green-1: #20a206;
+    --green-2: #20a206;
     --green-3: hsl(89, 46%, 56%);
     --green-4: hsl(89, 41%, 51%);
     --green-5: hsl(89, 36%, 46%);
-    --green-6: #039ca4;
+    --green-6: #20a206;
 
     --blue-1: hsl(221, 99%, 78%);
     --blue-2: hsl(221, 89%, 72%);
@@ -156,15 +153,14 @@ body {
 
     --yellow-1: hsl(36, 71%, 72%);
     --yellow-2: hsl(36, 66%, 64%);
-    --yellow-3: hsl(36, 61%, 59%);
-    --yellow-4: hsl(36, 56%, 54%);
-    --yellow-5: hsl(36, 51%, 49%);
-    --yellow-6: hsl(41, 98%, 35%);
+    --yellow-3: #de6800;
+    --yellow-4: #c75a22;
+    --yellow-5: #964a21;
 
     --purple-1: hsl(261, 95%, 85%);
     --purple-2: hsl(261, 85%, 79%);
     --purple-3: hsl(261, 75%, 73%);
     --purple-4: hsl(261, 65%, 67%);
-    --purple-5: hsl(261, 55%, 61%);
-    --purple-6: hsl(290, 48%, 35%);
+    --purple-5: #3f193c;
+    --purple-6: #140814;
 }
