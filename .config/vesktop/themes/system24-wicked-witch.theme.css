@@ -48,7 +48,7 @@ body {
     --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
     --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
     --custom-dms-background: image; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
-    --dms-background-image-url: url('https://raw.githubusercontent.com/lapis-lib/dotfiles/df61b52112c8c64217fe47b5e6f2ef3766e71afa/cibo/cibo.svg'); /* url of the background image */
+    --dms-background-image-url: url('https://raw.githubusercontent.com/lapis-lib/dotfiles/refs/heads/wicked-witch/images/wicked-witch.png'); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
     --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
 
