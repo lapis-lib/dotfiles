@@ -46,7 +46,7 @@ export C_INCLUDE_PATH="/n/msys64/clang64/include"
 export CPLUS_INCLUDE_PATH="/n/msys64/clang64/include/c++/v1"
 
 # oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/wicked-witch.toml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/cibo.toml)"
 
 # keybindings
 bindkey -e
