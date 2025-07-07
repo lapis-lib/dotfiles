@@ -111,14 +111,14 @@ return {
     'stevearc/overseer.nvim',
     opts = {},
   },
-  -- {
-  --   'akinsho/toggleterm.nvim',
-  --   version = '*',
-  --   opts = {
-  --     size = 10,
-  --     open_mapping = '<C-s>',
-  --   },
-  -- },
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
+      size = 10,
+      open_mapping = '<C-s>',
+    },
+  },
   {
     'zane-/cder.nvim',
     -- require('telescope').load_extension 'cder',
