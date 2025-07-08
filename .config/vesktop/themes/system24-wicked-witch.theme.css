@@ -105,7 +105,7 @@ body {
     --message-hover: hsla(225, 0%, 0%, 0.1); /* messages when hovered */
 
     /* accent colors */
-    --accent-1: var(--yellow-1); /* links and other accent text */
+    --accent-1: var(--yellow-3); /* links and other accent text */
     --accent-2: var(--yellow-4); /* small accent elements */
     --accent-3: var(--yellow-3); /* accent buttons */
     --accent-4: var(--yellow-4); /* accent buttons when hovered */
@@ -119,7 +119,7 @@ body {
     /* status indicator colors */
     --online: var(--green-6); /* change to #43a25a for default */
     --dnd: var(--red-6); /* change to #d83a42 for default */
-    --idle: var(--yellow-5); /* change to #ca9654 for default */
+    --idle: var(--yellow-4); /* change to #ca9654 for default */
     --streaming: var(--purple-6); /* change to #593695 for default */
     --offline: var(--text-4); /* change to #83838b for default offline color */
 
