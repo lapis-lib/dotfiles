@@ -21,7 +21,8 @@ window#waybar {
 #custom-applauncher,
 #tray,
 #workspaces,
-#pulseaudio { /* general scope */
+#pulseaudio,
+#bluetooth { /* general scope */
 	background-image: linear-gradient(to bottom, #27232b 100%);
 
 	margin: 6px;

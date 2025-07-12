@@ -5,9 +5,10 @@ clear
 # PATH vars
 # export GOPATH=$HOME/go
 # export PATH=$GOPATH/bin:$PATH
-PATH+="/n/msys64/clang64/bin"
-PATH+='/c/Program Files/MATLAB/R2024a/bin'
+# PATH+="/n/msys64/clang64/bin"
+# PATH+='/c/Program Files/MATLAB/R2024a/bin'
 export PATH
+export EDITOR=nvim
 # zinit dir
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 

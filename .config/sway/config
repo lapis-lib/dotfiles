@@ -20,6 +20,15 @@ set $menu wofi --show drun
 # Your preferred file explorer
 set $file_explorer nautilus
 
+# monitor variables
+set $disp1 "eDP-1"
+set $disp2 "DP-3"
+
+# input device variables
+set $touchpad "1118:3142:Intel_Touch_Host_Controller_Mouse"
+set $disp1-touch "1118:3165:Intel_Touch_Host_Controller_Touchscreen"
+input $disp1-touch map_to_output $disp1
+
 font pango:Maple Mono Normal NF CN 10
 
 ### Focus settings
@@ -28,13 +37,13 @@ focus_follows_mouse no
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output eDP-1 bg ~/dotfiles/images/monitor-1-bg.png fill
-output DP-3 bg ~/dotfiles/images/monitor-2-bg.png fill
+output $disp1 bg ~/dotfiles/images/monitor-1-bg.png fill
+output $disp2 bg ~/dotfiles/images/monitor-2-bg.png fill
 #
 # Example configuration:
 #
-output eDP-1 res 2400x1600@120.000Hz pos 2560 700 scale 1.5
-output DP-3 res 2560x1440@59.951Hz pos 0 0
+output $disp1 res 2400x1600@120.000Hz pos 2560 700 scale 1.5
+output $disp2 res 2560x1440@59.951Hz pos 0 0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -55,12 +64,12 @@ exec swayidle -w \
 #
 # Example configuration:
 #
-#   input type:touchpad {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+input $touchpad {
+      dwt enabled
+      natural_scroll enabled
+      middle_emulation enabled
+      clickfinger_button_map lrm
+}
 #
 #   input type:keyboard {
 #       xkb_layout "eu"
@@ -134,8 +143,23 @@ exec swayidle -w \
     bindsym $mod+Alt+6 workspace number 6
     bindsym $mod+Alt+7 workspace number 7
     bindsym $mod+Alt+8 workspace number 8
-    bindsym $mod+Alt+9 workspace number 9
-    bindsym $mod+Alt+0 workspace number 10
+
+    # Default workspaces
+    workspace 1 output $disp2
+    workspace 2 output $disp2
+    workspace 3 output $disp2
+    workspace 4 output $disp2
+    workspace 5 output $disp1
+    workspace 6 output $disp1
+    workspace 7 output $disp1
+    workspace 8 output $disp1
+
+    # Application workspace assignments
+    assign [app_id="firefox"] workspace 1
+    assign [class="obsidian"] workspace 2
+    assign [app_id="mpv"] workspace 4
+    assign [class="vesktop"] workspace 5
+
     # Move focused container to workspace
     bindsym $mod+Shift+Alt+1 move container to workspace number 1
     bindsym $mod+Shift+Alt+2 move container to workspace number 2
