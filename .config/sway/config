@@ -1,11 +1,10 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+# @lapis-lib
+# wicked-witch sway config
 
-### Variables
-#
+#@:------------:%
+#   VARIABLES
+#@:------------:%
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -13,11 +12,10 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
+# preferred apps
 set $term wezterm
-# Your preferred application launcher
 set $menu wofi --show drun
-# Your preferred file explorer
 set $file_explorer nautilus
 
 # monitor variables
@@ -29,27 +27,28 @@ set $touchpad "1118:3142:Intel_Touch_Host_Controller_Touchpad"
 set $disp1-touch "1118:3165:Intel_Touch_Host_Controller_Touchscreen"
 input $disp1-touch map_to_output $disp1
 
+# typeface
 font pango:Maple Mono Normal NF CN 10
 
-### Focus settings
+# focus settings
 focus_follows_mouse no
 
-### Output configuration
+#@:----------:%
+#   OUTPUTS
+#@:----------:%
 
 output $disp1 bg ~/dotfiles/images/monitor-1-bg.png fill
 output $disp2 bg ~/dotfiles/images/monitor-2-bg.png fill
-output $disp1 res 2400x1600@120.000Hz pos 2048 560 scale 1.75
-output $disp2 res 2560x1440@69.928Hz pos 0 0 scale 1.25
-#
+output $disp1 res 2400x1600@120.000Hz pos 2064 530 scale 1.5
+output $disp2 res 2560x1440@69.928Hz pos 0 0 scale 1.24
+
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 #xdg-desktop-portal-wlr shenanigans
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-### Idle configuration
-#
-# Example configuration:
-#
+# idle configuration
+
 exec swayidle -w \
          timeout 900 'swaylock -f -c 000000' \
          timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -59,8 +58,10 @@ exec swayidle -w \
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
-#
+#@:---------:%
+#   INPUTS
+#@:---------:%
+
 # Example configuration:
 #
 input $touchpad {
@@ -80,11 +81,11 @@ input $touchpad {
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
+#@:--------------:%
+#   KEYBINDINGS
+#@:--------------:%
 #
-# Basics:
-#
-    # Start a terminal
+    # start a terminal
     bindsym $mod+Return exec $term
 
     # Kill focused window
@@ -93,9 +94,11 @@ input $touchpad {
     # Start your launcher
     bindsym $mod+space exec $menu
 
+    # launch file explorer
     bindsym $mod+e exec $file_explorer
     bindsym $mod+Alt+e exec $file_explorer
 
+    # launch zotero
     bindsym $mod+Alt+z exec zotero
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -110,35 +113,38 @@ input $touchpad {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Alt+o exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
-# Moving around:
-#
-    # Move your focus around
+
+#@:-------------:%
+#   NAVIGATION
+#@:-------------:%
+
+    # move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
+    # or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
+    # move the focused window with the same, but add Alt
     bindsym $mod+Alt+$left move left
     bindsym $mod+Alt+$down move down
     bindsym $mod+Alt+$up move up
     bindsym $mod+Alt+$right move right
-    # Ditto, with arrow keys
+    # ditto, with arrow keys
     bindsym $mod+Alt+Left move left
     bindsym $mod+Alt+Down move down
     bindsym $mod+Alt+Up move up
     bindsym $mod+Alt+Right move right
 
-#
-# Workspaces:
-#
-    # Switch to workspace
+#@:-------------:%
+#   WORKSPACES
+#@:-------------:%
+
+    # switch to workspace
     bindsym $mod+Alt+1 workspace number 1
     bindsym $mod+Alt+2 workspace number 2
     bindsym $mod+Alt+3 workspace number 3
@@ -156,7 +162,7 @@ input $touchpad {
     bindsym $mod+Ctrl+Alt+7 workspace number 15
     bindsym $mod+Ctrl+Alt+8 workspace number 16
 
-    # Default workspaces
+    # default workspaces
     workspace 1 output $disp2
     workspace 2 output $disp2
     workspace 3 output $disp2
@@ -175,33 +181,38 @@ input $touchpad {
     workspace 16 output $disp1
 
     for_window [title="."] title_format "<b>%title</b> (%app_id)"
-    # Application workspace assignments
-    assign [app_id="firefox"] workspace 1
+
+    # application workspace assignments
     assign [app_id="obsidian"] workspace 2
     assign [app_id="Zotero"] workspace 3
     assign [app_id="libreoffice.*$"] workspace 4
     assign [app_id="mpv"] workspace 4
     assign [class="vesktop"] workspace 6
-    # Obsidian context assignments
-    exec wlrctl toplevel waitfor app_id="obsidian" title="csu.*$"|| swaymsg 'assign [app_id="obsidian" title="csu.*$"] workspace 1'
-    exec wlrctl toplevel waitfor app_id="obsidian" title="^.*super-cub.*$" || swaymsg assign [app_id="obsidian" title="^.*super-cub.*$"] workspace 8
-    exec wlrctl toplevel waitfor app_id="obsidian" title="^.*gundam.*$"|| swaymsg assign [app_id="obsidian" title="^.*gundam.*$"] workspace 8
 
-    # Move focused container to workspace
-    bindsym $mod+Shift+Alt+1 move container to workspace number 1
-    bindsym $mod+Shift+Alt+2 move container to workspace number 2
-    bindsym $mod+Shift+Alt+3 move container to workspace number 3
-    bindsym $mod+Shift+Alt+4 move container to workspace number 4
-    bindsym $mod+Shift+Alt+5 move container to workspace number 5
-    bindsym $mod+Shift+Alt+6 move container to workspace number 6
-    bindsym $mod+Shift+Alt+7 move container to workspace number 7
-    bindsym $mod+Shift+Alt+8 move container to workspace number 8
-    bindsym $mod+Shift+Alt+9 move container to workspace number 9
-    bindsym $mod+Shift+Alt+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+    # obsidian context assignments
+    # exec wlrctl toplevel waitfor app_id="obsidian" title="csu.*$"|| swaymsg 'assign [app_id="obsidian" title="csu.*$"] workspace 1'
+    # exec wlrctl toplevel waitfor app_id="obsidian" title="^.*super-cub.*$" || swaymsg assign [app_id="obsidian" title="^.*super-cub.*$"] workspace 8
+    # exec wlrctl toplevel waitfor app_id="obsidian" title="^.*gundam.*$"|| swaymsg assign [app_id="obsidian" title="^.*gundam.*$"] workspace 8
 
-    # Always floating windows
+    # move focused container to workspace
+    bindsym $mod+Alt+Shift+1 move container to workspace number 1
+    bindsym $mod+Alt+Shift+2 move container to workspace number 2
+    bindsym $mod+Alt+Shift+3 move container to workspace number 3
+    bindsym $mod+Alt+Shift+4 move container to workspace number 4
+    bindsym $mod+Alt+Shift+5 move container to workspace number 5
+    bindsym $mod+Alt+Shift+6 move container to workspace number 6
+    bindsym $mod+Alt+Shift+7 move container to workspace number 7
+    bindsym $mod+Alt+Shift+8 move container to workspace number 8
+    bindsym $mod+Ctrl+Alt+Shift+1 move container to workspace number 9
+    bindsym $mod+Ctrl+Alt+Shift+2 move container to workspace number 10
+    bindsym $mod+Ctrl+Alt+Shift+3 move container to workspace number 11
+    bindsym $mod+Ctrl+Alt+Shift+4 move container to workspace number 12
+    bindsym $mod+Ctrl+Alt+Shift+5 move container to workspace number 13
+    bindsym $mod+Ctrl+Alt+Shift+6 move container to workspace number 14
+    bindsym $mod+Ctrl+Alt+Shift+7 move container to workspace number 15
+    bindsym $mod+Ctrl+Alt+Shift+8 move container to workspace number 16
+
+    # always floating windows
     for_window [app_id="blueman-manager"] floating enable
     for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
     for_window [app_id="syncthingtray-qt6"] floating enable
@@ -213,28 +224,53 @@ input $touchpad {
     for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable
     for_window [title="^.*Bitwarden.*$"] floating enable
 
-### enchanting-table spells
+#@:--------------------------:%
+#   ENCHANTING-TABLE SPELLS
+#@:--------------------------:%
 
     # layer 0
-    bindsym $mod+Shift+2 exec firefox
-    bindsym $mod+Shift+4 exec $term
-    bindsym $mod+Shift+Left move container to output left, focus output left
-    bindsym $mod+Shift+8 exec vesktop
-    bindsym $mod+Shift+5 exec obsidian
-    bindsym --locked XF86AudioPrev exec playerctl previous
-    bindsym --locked XF86AudioPlay exec playerctl play-pause
-    bindsym --locked XF86AudioNext exec playerctl next
+        # hearth
+        bindsym $mod+Shift+2 exec firefox
+        # encode
+        bindsym $mod+Shift+4 exec $term
+        # mirror image
+        bindsym $mod+Shift+Left move container to output left, focus output left
+        # fizzle cast
+        bindsym $mod+Shift+8 exec vesktop
+        # mind lock
+        bindsym $mod+Shift+5 exec obsidian
+        # slow
+        bindsym --locked XF86AudioPrev exec playerctl previous
+        # book lock
+        bindsym --locked XF86AudioPlay exec playerctl play-pause
+        # haste
+        bindsym --locked XF86AudioNext exec playerctl next
 
     # layer 1
-    bindsym $mod+Ctrl+Shift+2 [app_id="firefox"] focus
-    bindsym $mod+Ctrl+Shift+4 exec $file_explorer
-    bindsym $mod+Ctrl+Shift+Left resize set width 548px
-    bindsym $mod+Alt+Shift+Left mark swap, focus left, swap container with mark swap
-    bindsym $mod+Ctrl+Shift+8 exec blender
-    bindsym $mod+Ctrl+Shift+5 exec zotero
-#
-# Layout stuff:
-#
+        # hearth
+        # bindsym $mod+Ctrl+Shift+2 [app_id="firefox"] focus
+        bindsym $mod+Ctrl+Shift+2 exec steam
+        # encode
+        bindsym $mod+Ctrl+Shift+4 exec $file_explorer
+        # mirror image
+        bindsym $mod+Ctrl+Shift+Left resize set width 548px
+        bindsym $mod+Alt+Shift+Left mark swap, focus left, swap container with mark swap
+        # fizzle cast
+        bindsym $mod+Ctrl+Shift+8 exec blender
+        # mind lock
+        bindsym $mod+Ctrl+Shift+5 exec zotero
+        # slow
+        # bindsym --locked Ctrl+XF86AudioPrev exec playerctl previous
+        # book lock
+        bindsym --locked Ctrl+XF86AudioPlay exec libreoffice
+        # haste
+        # bindsym --locked Ctrl+XF86AudioNext exec playerctl next
+
+
+#@:---------:%
+#   LAYOUT
+#@:---------:%
+
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
@@ -256,9 +292,9 @@ input $touchpad {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
+
 # Scratchpad:
-#
+
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -292,9 +328,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-#
-# Utilities:
-#
+
+#@:-----------:%
+#   UTILITIES
+#@:-----------:%
+
     # Special keys to adjust volume via PulseAudio
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
@@ -304,40 +342,32 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-    # Alt-tab config
-    exec sway-alttab
+    # alt-tab config
+    # exec sway-alttab
 
-    # Syncthing config
+    # IVPN config
+    exec gtk-launch IVPN
+
+    # syncthing config
     exec syncthingtray-qt6 --wait
 
-    # Shotman config
+    # bluetooth config
+    exec blueman
+
+    # shotman config
     bindsym $mod+p           exec shotman --capture window --copy
     bindsym $mod+Alt+p       exec shotman --capture region --copy
     bindsym Ctrl+$mod+Alt+p  exec shotman --capture output --copy
 
-    # Load gammastep config
+    # gammastep config
     exec gammastep -c '~/.config/gammastep/config.ini'
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+
+# status bar
+
 bar {
 	swaybar_command waybar
     }
-
-# Ricing:
-
-gaps inner 8px
-gaps outer 8px
-default_border pixel 1px
-default_floating_border pixel 1px
-
-# GTK:
-set $gnome-schema org.gnome.desktop.interface
-exec_always {
-    gsettings set $gnome-schema cursor-blink false
-}
 
 # # Notification Daemon
 # exec swaync
@@ -345,5 +375,30 @@ exec_always {
 # # Toggle control center
 # bindsym $mod+Shift+n exec swaync-client -t -sw
 
+#@:--------:%
+#   RICING
+#@:--------:%
+
+# gaps and borders
+
+gaps inner 8px
+gaps outer 8px
+default_border pixel 1px
+default_floating_border pixel 1px
+
+# border colours
+#                       border  bg      text    ind     child border
+client.focused          #b66395 #141216 #d8cab8 #b66395 #b66395
+client.focused_inactive #5a5da0 #141216 #d8cab8 #5a5da0 #5a5da0
+client.unfocused        #5a5da0 #141216 #d8cab8 #5a5da0 #5a5da0
+client.urgent           #ff4f00 #141216 #d8cab8 #ff4f00 #ff4f00
+client.placeholder      #5a5da0 #141216 #d8cab8 #5a5da0 #5a5da0
+
+# gtk
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema cursor-blink false
+}
+
 include /etc/sway/config.d/*
-# include touchpad
