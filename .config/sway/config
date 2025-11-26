@@ -184,15 +184,17 @@ input $touchpad {
 
     # application workspace assignments
     assign [app_id="obsidian"] workspace 2
-    assign [app_id="Zotero"] workspace 3
+    # assign [app_id="Zotero"] workspace 3
     assign [app_id="libreoffice.*$"] workspace 4
     assign [app_id="mpv"] workspace 4
     assign [class="vesktop"] workspace 6
 
     # obsidian context assignments
-    # exec wlrctl toplevel waitfor app_id="obsidian" title="csu.*$"|| swaymsg 'assign [app_id="obsidian" title="csu.*$"] workspace 1'
-    # exec wlrctl toplevel waitfor app_id="obsidian" title="^.*super-cub.*$" || swaymsg assign [app_id="obsidian" title="^.*super-cub.*$"] workspace 8
-    # exec wlrctl toplevel waitfor app_id="obsidian" title="^.*gundam.*$"|| swaymsg assign [app_id="obsidian" title="^.*gundam.*$"] workspace 8
+    # for_window [app_id="obsidian" con_mark="/.*anime-list.*/gm"] move workspace 8
+    # exec wlrctl toplevel waitfor app_id="obsidian" title="/csu.*/gm"|| swaymsg 'assign [app_id="obsidian" title="/csu.*/gm"] workspace 1'
+    # exec wlrctl toplevel waitfor app_id="obsidian" title="/.*super-cub.*$/gm" || swaymsg assign [app_id="obsidian" title="/.*super-cub.*/gm"] workspace 8
+    # exec wlrctl toplevel waitfor app_id="obsidian" title="/.*gundam.*/gm"|| swaymsg assign [app_id="obsidian" title="/.*gundam.*/gm"] workspace 8
+    # exec wlrctl toplevel waitfor app_id="obsidian" con_mark="/.*anime-list.*/gm"|| swaymsg assign [app_id="obsidian" con_mark="/.*anime-list.*/gm"] workspace 8
 
     # move focused container to workspace
     bindsym $mod+Alt+Shift+1 move container to workspace number 1
@@ -213,6 +215,7 @@ input $touchpad {
     bindsym $mod+Ctrl+Alt+Shift+8 move container to workspace number 16
 
     # always floating windows
+    for_window [app_id="org.gnome.Nautilus"] floating enable
     for_window [app_id="blueman-manager"] floating enable
     for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
     for_window [app_id="syncthingtray-qt6"] floating enable
@@ -249,7 +252,7 @@ input $touchpad {
     # layer 1
         # hearth
         # bindsym $mod+Ctrl+Shift+2 [app_id="firefox"] focus
-        bindsym $mod+Ctrl+Shift+2 exec steam
+        bindsym $mod+Ctrl+Shift+2 exec __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia steam
         # encode
         bindsym $mod+Ctrl+Shift+4 exec $file_explorer
         # mirror image

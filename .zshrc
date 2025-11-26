@@ -14,6 +14,7 @@ export EDITOR=nvim
 # export QT_QPA_PLATFORM=wayland
 export XDG_PICTURES_DIR='/data/netsphere/thousand-sunny/aquarium-bar/images/'
 export XDG_SCREENSHOTS_DIR='/data/netsphere/thousand-sunny/aquarium-bar/images/screenshots/'
+export PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT=5.0
 # zinit dir
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
