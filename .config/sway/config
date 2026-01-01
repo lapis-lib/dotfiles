@@ -112,7 +112,7 @@ input $touchpad {
     bindsym $mod+Alt+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Alt+o exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Alt+0 exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 #@:-------------:%
 #   NAVIGATION
@@ -180,17 +180,20 @@ input $touchpad {
     workspace 15 output $disp1
     workspace 16 output $disp1
 
-    for_window [title="."] title_format "<b>%title</b> (%app_id)"
+    # for_window [title="."] title_format "<b>%title</b> (%app_id)"
 
     # application workspace assignments
     assign [app_id="obsidian"] workspace 2
     # assign [app_id="Zotero"] workspace 3
     assign [app_id="libreoffice.*$"] workspace 4
     assign [app_id="mpv"] workspace 4
-    assign [class="vesktop"] workspace 6
+    assign [app_id="vesktop"] workspace 6
 
     # obsidian context assignments
-    # for_window [app_id="obsidian" con_mark="/.*anime-list.*/gm"] move workspace 8
+    # for_window [app_id="obsidian" title=".*super-cub"] move to workspace 8
+    bindsym $mod+Alt+o for_window [app_id="obsidian" title=".*anime-list"] mark anilist, move to workspace 8
+    bindsym $mod+c for_window [app_id="obsidian" title=".*csu.*"] move to workspace 1
+    # bindsym $mod+i assign [app_id="obsidian" title="/^.*anime-list.*$/gm"] workspace 8
     # exec wlrctl toplevel waitfor app_id="obsidian" title="/csu.*/gm"|| swaymsg 'assign [app_id="obsidian" title="/csu.*/gm"] workspace 1'
     # exec wlrctl toplevel waitfor app_id="obsidian" title="/.*super-cub.*$/gm" || swaymsg assign [app_id="obsidian" title="/.*super-cub.*/gm"] workspace 8
     # exec wlrctl toplevel waitfor app_id="obsidian" title="/.*gundam.*/gm"|| swaymsg assign [app_id="obsidian" title="/.*gundam.*/gm"] workspace 8
