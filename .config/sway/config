@@ -23,6 +23,7 @@ set $disp1 "eDP-1"
 set $disp2 "DP-3"
 
 # input device variables
+set $keyboard "1118:3189:Microsoft_Surface_045E:0C75_Keyboard"
 set $touchpad "1118:3142:Intel_Touch_Host_Controller_Touchpad"
 set $disp1-touch "1118:3165:Intel_Touch_Host_Controller_Touchscreen"
 input $disp1-touch map_to_output $disp1
@@ -50,10 +51,11 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # idle configuration
 
 exec swayidle -w \
-         timeout 900 'swaylock -f -c 000000' \
-         timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
-#
+	timeout 1800 'swaylock -f' \
+	timeout 1805 'swaymsg "output * power off"' \
+	'swaymsg "output * power on"' \
+        -sleep 'playerctl pause; swaylock -f'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -229,6 +231,8 @@ input $touchpad {
     for_window [window_type="popup_menu"] floating enable
     for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable
     for_window [title="^.*Bitwarden.*$"] floating enable
+    for_window [app_id="org.gnome.baobab"] floating enable
+    for_window [app_id="com.interversehq.qView"] floating enable
 
 #@:--------------------------:%
 #   ENCHANTING-TABLE SPELLS
@@ -351,6 +355,8 @@ bindsym $mod+r mode "resize"
     # alt-tab config
     # exec sway-alttab
 
+    # surface profile config
+    exec surface profile set balanced-performance
     # IVPN config
     exec gtk-launch IVPN
 
@@ -408,3 +414,4 @@ exec_always {
 }
 
 include /etc/sway/config.d/*
+include touchpad

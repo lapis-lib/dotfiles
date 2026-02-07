@@ -1,9 +1,10 @@
-*{
+* {
 	font-family: Maple Mono Normal;
 	font-size: 14px;
 	border-radius: 9px;
 	padding: 0px;
-	background: transparent; /* each background element can be 
+	background: transparent;
+	/* each background element can be 
 							specified separately */
 }
 
@@ -22,7 +23,8 @@ window#waybar {
 #tray,
 #workspaces,
 #pulseaudio,
-#bluetooth { /* general scope */
+#bluetooth {
+	/* general scope */
 	background-image: linear-gradient(to bottom, #27232b 100%);
 
 	margin: 6px;
@@ -38,4 +40,33 @@ window#waybar {
 
 #clock {
 	margin-right: 6px;
+}
+
+#workspaces button {
+	transition-duration: 100ms;
+	all: initial;
+	min-width: 0;
+	color: #998f7c;
+	margin-right: 0.2cm;
+	margin-left: 0.2cm;
+}
+
+#workspaces button:hover {
+	transition-duration: 120ms;
+	color: #b66395;
+}
+
+#workspaces button.focused {
+	color: #d8cab8;
+	font-weight: bold;
+}
+
+#workspaces button.urgent {
+	color: #ff4f00;
+}
+
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+	color: #fc4649;
 }
