@@ -33,7 +33,7 @@ focus_follows_mouse no
 #@:----------:%
 
 output $disp1 bg ~/dotfiles/images/terminal-cibo-alter-dim-2.png fill
-output $disp2 bg ~/dotfiles/images/toha-heavy-industries-bg.png fill
+output $disp2 bg ~/dotfiles/images/toha-heavy-industries-bg-dim-2.png fill
 output $disp1 res 1920x1080@60.000Hz pos 0 0
 output $disp2 res 1920x1080@60.000Hz pos -1920 -250
 
@@ -256,6 +256,7 @@ exec swayidle -w \
         # encode
         # mirror image
         bindsym $mod+Ctrl+Shift+Left resize set width 580px
+        bindsym $mod+Ctrl+Alt+Shift+Left resize set width 50ppt
         bindsym $mod+Alt+Shift+Left mark swap, focus left, swap container with mark swap
 
 
@@ -361,10 +362,10 @@ bar {
     }
 
 # # Notification Daemon
-# exec swaync
-#
+exec swaync
+
 # # Toggle control center
-# bindsym $mod+Shift+n exec swaync-client -t -sw
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 #@:--------:%
 #   RICING
@@ -379,7 +380,7 @@ default_floating_border pixel 2px
 
 # border colours
 #                       border  bg      text    ind     child border
-client.focused          #2968ad #141216 #cccccc #2968ad #2968ad
+client.focused          #43a9b0 #141216 #cccccc #43a9b0 #43a9b0
 client.focused_inactive #5c5e5d #141216 #cccccc #5c5e5d #5c5e5d
 client.unfocused        #5c5e5d #141216 #cccccc #5c5e5d #5c5e5d
 client.urgent           #bb0233 #141216 #cccccc #bb0233 #bb0233

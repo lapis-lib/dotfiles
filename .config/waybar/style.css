@@ -16,6 +16,11 @@ window#waybar {
 	border-style: none;
 }
 
+menu {
+	background: rgba(20,19,21,0.9);
+	color: #cccccc;
+}
+
 #battery,
 #network,
 #clock,
@@ -32,7 +37,7 @@ window#waybar {
 	border-radius: 8px;
 	padding: 4px 8px;
 
-	color: #d8cab8;
+	color: #cccccc;
 	border-style: none;
 
 	transition-duration: 120ms;
