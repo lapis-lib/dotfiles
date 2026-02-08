@@ -357,7 +357,7 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
 
       -- Custom keymaps
-      vim.keymap.set('n', '<leader>sc', ':Telescope cmake_tools<CR>', { desc = '[S]earch [C]Make files' })
+      -- vim.keymap.set('n', '<leader>sc', ':Telescope cmake_tools<CR>', { desc = '[S]earch [C]Make files' })
     end,
   },
 
@@ -500,21 +500,21 @@ require('lazy').setup({
       -- require 'lapis-lib.configs.lspconfig'
 
       local servers = {
-        clangd = {
-          on_new_config = function(new_config, new_cwd)
-            local status, cmake = pcall(require, 'cmake-tools')
-            if status then
-              cmake.clangd_on_new_config(new_config)
-            end
-          end,
-          cmd = { 'clangd', '--query-driver=N:/msys64/clang64/bin/clang++.exe' },
-        },
+        -- clangd = {
+        --   on_new_config = function(new_config, new_cwd)
+        --     local status, cmake = pcall(require, 'cmake-tools')
+        --     if status then
+        --       cmake.clangd_on_new_config(new_config)
+        --     end
+        --   end,
+        --   cmd = { 'clangd', '--query-driver=N:/msys64/clang64/bin/clang++.exe' },
+        -- },
         gopls = {},
         pyright = {
           capabilities = capabilities,
         },
         jsonls = {},
-        cmake = {},
+        -- cmake = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -809,35 +809,19 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-    config = function(_, opts)
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    version = nil,
+    config = function()
+      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
 
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
-
-      -- There are additional nvim-treesitter modules that you can use to interact
-      -- with nvim-treesitter. You should go explore a few and see what interests you:
-      --
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      require('nvim-treesitter').install(filetypes)
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = filetypes,
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
     end,
   },
-
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.

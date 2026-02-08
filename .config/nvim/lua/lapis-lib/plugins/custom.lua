@@ -89,17 +89,13 @@ return {
       require 'lapis-lib.configs.oil'
     end,
   },
-  {
-    'WENLIXIAO-CS/vim-matlab',
-    -- dependencies = { 'honza/vim-snippets', 'garbas/vim-snipmate', 'marcweber/vim-addon-mw-utils' },
-  },
-  {
-    'Civitasv/cmake-tools.nvim',
-    config = function()
-      require 'lapis-lib.configs.cmake'
-    end,
-    lazy = false,
-  },
+  -- {
+  --   'Civitasv/cmake-tools.nvim',
+  --   config = function()
+  --     require 'lapis-lib.configs.cmake'
+  --   end,
+  --   lazy = false,
+  -- },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
@@ -139,6 +135,17 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('bufferline').setup {}
+    end,
+  },
+  {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = { -- set to setup table
+    },
+    config = function()
+      require('colorizer').setup {
+        user_default_options = { mode = 'foreground' },
+      }
     end,
   },
 }

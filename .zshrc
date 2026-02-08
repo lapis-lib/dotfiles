@@ -5,9 +5,16 @@ clear
 # PATH vars
 # export GOPATH=$HOME/go
 # export PATH=$GOPATH/bin:$PATH
-PATH+="/n/msys64/clang64/bin"
-PATH+='/c/Program Files/MATLAB/R2024a/bin'
+# PATH+="/n/msys64/clang64/bin"
+# PATH+='/c/Program Files/MATLAB/R2024a/bin'
 export PATH
+export EDITOR=nvim
+# export SDL_VIDEODRIVER=wayland
+# export _JAVA_AWT_WM_NONREPARENTING=1
+# export QT_QPA_PLATFORM=wayland
+export XDG_PICTURES_DIR='/data/netsphere/thousand-sunny/aquarium-bar/images/'
+export XDG_SCREENSHOTS_DIR='/data/netsphere/thousand-sunny/aquarium-bar/images/screenshots/'
+export PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT=5.0
 # zinit dir
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -82,4 +89,10 @@ alias c='clear'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-
+# pnpm
+export PNPM_HOME="/home/wicked-witch/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
