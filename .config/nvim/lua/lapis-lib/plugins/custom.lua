@@ -89,13 +89,17 @@ return {
       require 'lapis-lib.configs.oil'
     end,
   },
-  -- {
-  --   'Civitasv/cmake-tools.nvim',
-  --   config = function()
-  --     require 'lapis-lib.configs.cmake'
-  --   end,
-  --   lazy = false,
-  -- },
+  {
+    'WENLIXIAO-CS/vim-matlab',
+    -- dependencies = { 'honza/vim-snippets', 'garbas/vim-snipmate', 'marcweber/vim-addon-mw-utils' },
+  },
+  {
+    'Civitasv/cmake-tools.nvim',
+    config = function()
+      require 'lapis-lib.configs.cmake'
+    end,
+    lazy = false,
+  },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
@@ -135,6 +139,16 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('bufferline').setup {}
+    end,
+  },
+  {
+    'ibhagwan/smartyank.nvim',
+    config = function()
+      require('smartyank').setup {
+        clipboard = {
+          enabled = true,
+        },
+      }
     end,
   },
   {
