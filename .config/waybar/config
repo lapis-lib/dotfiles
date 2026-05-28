@@ -1,12 +1,13 @@
-{
+[{
   "layer": "bot",
+  "output": "eDP-1",
   "spacing": 0,
   "height": 0,
   "margin-bottom": 0,
   "margin-top": 15,
   "position": "top",
-  "margin-right": 300,
-  "margin-left": 300,
+  "margin-right": 200,
+  "margin-left": 200,
 
   "modules-left": [
     "sway/workspaces"
@@ -17,6 +18,7 @@
   "modules-right": [
     "network",
     "bluetooth",
+    "custom/pacman",
     "battery",
     "pulseaudio",
     "tray",
@@ -49,6 +51,7 @@
     "format-wifi": "   {bandwidthDownBits}",
     "format-ethernet": "   {bandwidthDownBits}",
     "format-disconnected": "󰤮   No Network",
+    "on-click": "nm-connection-editor",
     "interval": 5,
     "tooltip": false
   },
@@ -88,4 +91,115 @@
     "format": " {status}",
     "on-click": "blueman-applet"
   },
-}
+  "custom/pacman": {
+	"format": "  {text} pkgs",
+	"exec": "checkupdates | wc -l",       // # of updates
+	"exec-if": "exit 0",                  // always run; consider advanced run conditions
+	"on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+	"signal": 8,
+	"tooltip": false
+   }
+},
+
+{
+  "layer": "bot",
+  "output": "DP-3",
+  "spacing": 0,
+  "height": 0,
+  "margin-bottom": 0,
+  "margin-top": 15,
+  "position": "top",
+  "margin-right": 300,
+  "margin-left": 300,
+
+  "modules-left": [
+    "sway/workspaces"
+  ],
+  "modules-center": [
+    "custom/applauncher"
+  ],
+  "modules-right": [
+    "network",
+    "bluetooth",
+    "custom/pacman",
+    "battery",
+    "pulseaudio",
+    "tray",
+    "clock"
+  ],
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "tooltip": false
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "tooltip": false,
+  },
+  "custom/applauncher": {
+    "format": "〇",
+    "on-click": "pgrep wofi >/dev/null 2>&1 && killall wofi || wofi --show drun --location=top -y 15",
+    "tooltip": false
+  },
+  "tray": {
+    "spacing": 10,
+    "tooltip": false
+  },
+  "clock": {
+    "format": "󰅐  {:%H:%M}",
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": "   {bandwidthDownBits}",
+    "format-ethernet": "   {bandwidthDownBits}",
+    "format-disconnected": "󰤮   No Network",
+    "on-click": "nm-connection-editor",
+    "interval": 5,
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "max-volume": 150,
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-icons": [
+      "",
+      "",
+      " "
+    ],
+    "nospacing": 1,
+    "format-muted": " ",
+    "on-click": "pavucontrol",
+    "tooltip": false
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-full": "󱈑 {capacity}%",
+    "format-icons": [
+      "󱊡",
+      "󱊢",
+      "󱊣"
+    ]
+  },
+  "bluetooth": {
+    "controller": "controller1",
+    "format": " {status}",
+    "on-click": "blueman-applet"
+  },
+  "custom/pacman": {
+	"format": "  {text} pkgs",
+	"exec": "checkupdates | wc -l",       // # of updates
+	"exec-if": "exit 0",                  // always run; consider advanced run conditions
+	"on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+	"signal": 8,
+	"tooltip": false
+   }
+}]

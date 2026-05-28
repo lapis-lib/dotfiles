@@ -21,9 +21,11 @@ set $file_explorer nautilus
 # monitor variables
 set $disp1 "eDP-1"
 set $disp2 "DP-3"
+# set $work-right "DP-3"
 
 # input device variables
 set $keyboard "1118:3189:Microsoft_Surface_045E:0C75_Keyboard"
+set $nk65kb "35176:20047:Yiancar-Designs_NK65B"
 set $touchpad "1118:3142:Intel_Touch_Host_Controller_Touchpad"
 set $disp1-touch "1118:3165:Intel_Touch_Host_Controller_Touchscreen"
 input $disp1-touch map_to_output $disp1
@@ -40,8 +42,10 @@ focus_follows_mouse no
 
 output $disp1 bg ~/dotfiles/images/monitor-1-bg.png fill
 output $disp2 bg ~/dotfiles/images/monitor-2-bg.png fill
-output $disp1 res 2400x1600@120.000Hz pos 2064 530 scale 1.5
+output $disp1 res 2400x1600@120.000Hz pos 2064 500 scale 1.5
 output $disp2 res 2560x1440@69.928Hz pos 0 0 scale 1.24
+output $work-right res 1920x1080@60.000Hz pos 3000 -550
+output $work-right bg ~/dotfiles/images/monitor-2-bg.png fill
 
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -66,7 +70,7 @@ exec swayidle -w \
 
 # Example configuration:
 #
-input $touchpad {
+input type:touchpad {
       dwt enabled
       natural_scroll enabled
       scroll_method two_finger
@@ -74,11 +78,17 @@ input $touchpad {
       click_method clickfinger
       clickfinger_button_map lrm
       tap disabled
+      scroll_factor 0.33
 }
 #
-#   input type:keyboard {
-#       xkb_layout "eu"
-#   }
+input type:keyboard {
+      xkb_options caps:escape
+  }
+
+input $nk65kb {
+      # xkb_options caps:capslock
+}
+
 #
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
@@ -92,6 +102,7 @@ input $touchpad {
 
     # Kill focused window
     bindsym $mod+q kill
+    bindsym Alt+q kill
 
     # Start your launcher
     bindsym $mod+space exec $menu
@@ -141,6 +152,10 @@ input $touchpad {
     bindsym $mod+Alt+Down move down
     bindsym $mod+Alt+Up move up
     bindsym $mod+Alt+Right move right
+
+    # cycle workspaces
+    bindsym $mod+Ctrl+Alt+Left workspace prev
+    bindsym $mod+Ctrl+Alt+Right workspace next
 
 #@:-------------:%
 #   WORKSPACES
@@ -219,6 +234,9 @@ input $touchpad {
     bindsym $mod+Ctrl+Alt+Shift+7 move container to workspace number 15
     bindsym $mod+Ctrl+Alt+Shift+8 move container to workspace number 16
 
+    # swap between current and last workspace
+    bindsym Alt+Tab workspace back_and_forth
+
     # always floating windows
     for_window [app_id="org.gnome.Nautilus"] floating enable
     for_window [app_id="blueman-manager"] floating enable
@@ -233,6 +251,10 @@ input $touchpad {
     for_window [title="^.*Bitwarden.*$"] floating enable
     for_window [app_id="org.gnome.baobab"] floating enable
     for_window [app_id="com.interversehq.qView"] floating enable
+    for_window [title="zoom"] floating enable
+    for_window [app_id="nm-connection-editor"] floating enable
+    for_window [app_id="org.gnome.Calculator"] floating enable
+    for_window [title="Citation Dialog"] floating enable
 
 #@:--------------------------:%
 #   ENCHANTING-TABLE SPELLS
@@ -264,6 +286,7 @@ input $touchpad {
         bindsym $mod+Ctrl+Shift+4 exec $file_explorer
         # mirror image
         bindsym $mod+Ctrl+Shift+Left resize set width 548px
+        bindsym $mod+Ctrl+Alt+Shift+Left resize set width 50ppt
         bindsym $mod+Alt+Shift+Left mark swap, focus left, swap container with mark swap
         # fizzle cast
         bindsym $mod+Ctrl+Shift+8 exec blender
@@ -374,6 +397,8 @@ bindsym $mod+r mode "resize"
     # gammastep config
     exec gammastep -c '~/.config/gammastep/config.ini'
 
+    # ibus config
+    exec ibus --type wayland
 
 # status bar
 

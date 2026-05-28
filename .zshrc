@@ -15,6 +15,13 @@ export EDITOR=nvim
 export XDG_PICTURES_DIR='/data/netsphere/thousand-sunny/aquarium-bar/images/'
 export XDG_SCREENSHOTS_DIR='/data/netsphere/thousand-sunny/aquarium-bar/images/screenshots/'
 export PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT=5.0
+
+# lang
+export GTK_IM_MODULE=wayland
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULES=wayland;ibus
+export QT_IM_MODULE=ibus
+
 # zinit dir
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -48,7 +55,7 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
-export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share}"
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share},/usr/share/glib-2.0/schemas/"
 export C_INCLUDE_PATH="/n/msys64/clang64/include"
 export CPLUS_INCLUDE_PATH="/n/msys64/clang64/include/c++/v1"
 

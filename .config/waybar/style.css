@@ -16,10 +16,16 @@ window#waybar {
 	border-style: none;
 }
 
+menu {
+	background: rgba(20, 19, 21, 0.8);
+	color: #d8cab8;
+}
+
 #battery,
 #network,
 #clock,
 #custom-applauncher,
+#custom-pacman,
 #tray,
 #workspaces,
 #pulseaudio,
@@ -61,8 +67,24 @@ window#waybar {
 	font-weight: bold;
 }
 
+@keyframes blink {
+	0% {
+		color: #ff4f00;
+	}
+
+	50% {
+		color: #d8cab8;
+	}
+}
+
 #workspaces button.urgent {
 	color: #ff4f00;
+	font-weight: bold;
+	animation-name: blink;
+	animation-duration: 1.0s;
+	animation-timing-function: steps(2);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #battery.warning,
